@@ -10,7 +10,7 @@ import { BaseScript } from '../core';
 import { InstantBinConfirmSettings } from './settings-entry';
 
 export class InstantBinConfirm extends BaseScript {
-  unmodifiedConfirmation = utils.PopupManager.ShowConfirmation;
+  unmodifiedConfirmation = utils.PopupManager.showConfirmation;
 
   constructor() {
     super(InstantBinConfirmSettings.id);
@@ -24,9 +24,9 @@ export class InstantBinConfirm extends BaseScript {
     super.onScreenRequest(screenId);
     const settings = this.getSettings();
 
-    utils.PopupManager.ShowConfirmation = (dialog, amount, proceed, s) => {
+    utils.PopupManager.showConfirmation = (dialog, amount, proceed, s) => {
       let cancel = s;
-      if (!utils.JS.isFunction(s)) {
+      if (typeof s !== 'function') {
         cancel = function () { };
       }
 
@@ -61,6 +61,6 @@ export class InstantBinConfirm extends BaseScript {
 
   deactivate(state) {
     super.deactivate(state);
-    utils.PopupManager.ShowConfirmation = this.unmodifiedConfirmation;
+    utils.PopupManager.showConfirmation = this.unmodifiedConfirmation;
   }
 }
