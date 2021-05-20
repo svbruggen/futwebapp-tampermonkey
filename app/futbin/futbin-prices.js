@@ -241,6 +241,7 @@ export class FutbinPrices extends BaseScript {
     }
 
     const showBargains = (this.getSettings()['show-bargains'].toString() === 'true');
+    const addTax = (this.getSettings()['add-tax'].toString() === 'true');
 
     const resourceIdMapping = [];
 
@@ -279,7 +280,7 @@ export class FutbinPrices extends BaseScript {
 
           const futbinData = JSON.parse(res.response);
           resourceIdMapping.forEach((item) => {
-            FutbinPrices._showFutbinPrice(screen, item, futbinData, showBargains);
+            FutbinPrices._showFutbinPrice(screen, item, futbinData, showBargains, addTax);
             futbinlist.push(futbinData[item.playerId]);
           });
           const platform = utils.getPlatform();
@@ -301,7 +302,7 @@ export class FutbinPrices extends BaseScript {
       });
     }
   }
-  static async _showFutbinPrice(screen, item, futbinData, showBargain) {
+  static async _showFutbinPrice(screen, item, futbinData, showBargain, addTax) {
     if (!futbinData) {
       return;
     }
@@ -370,8 +371,10 @@ export class FutbinPrices extends BaseScript {
     }
 
     if (showBargain) {
-      if (item.item._auction &&
-        item.item._auction.buyNowPrice < futbinData[playerId].prices[platform].LCPrice.toString().replace(/[,.]/g, '')) {
+      const buyNow = item.item._auction.buyNowPrice;
+      const buyNowPrice = addTax ? item.item._auction.buyNowPrice + ((5 / 100) * buyNow) : buyNow;
+      const futbinPrice = +futbinData[playerId].prices[platform].LCPrice.toString().replace(/[,.]/g, '');
+      if (item.item._auction && (buyNowPrice < futbinPrice)) {
         target.addClass('futbin-bargain');
       }
     }
