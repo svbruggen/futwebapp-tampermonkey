@@ -1,7 +1,6 @@
 /* globals $ */
 
 import { BaseScript, SettingsEntry } from '../core';
-
 import './style/refresh-list.scss';
 
 export class RefreshListSettings extends SettingsEntry {
@@ -39,10 +38,15 @@ class RefreshTransferList extends BaseScript {
           if ($('.pagingContainer').find('.refresh').length === 0) {
             $('.pagingContainer').append('<button class="flat pagination refresh" style="float: right;">Refresh list</button>');
             $('.refresh').click(() => {
-              getAppMain().getRootViewController().getPresentedViewController()
+              const listController = getAppMain().getRootViewController()
+                .getPresentedViewController()
                 .getCurrentViewController()
                 .getCurrentController()
-                ._listController._requestItems();
+                ._listController;
+
+              const currentPage = listController._paginationViewModel._pageIndex;
+
+              listController._requestItems(currentPage);
             });
           }
         }, 1000);

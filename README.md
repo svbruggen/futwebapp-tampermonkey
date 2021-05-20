@@ -2,6 +2,13 @@
 
 [![Join the chat at https://gitter.im/futwebapp-tampermonkey/Lobby](https://badges.gitter.im/futwebapp-tampermonkey/Lobby.svg)](https://gitter.im/futwebapp-tampermonkey/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+## :warning: Discontinued
+**Due to personal time constraints I can no longer keep this script working at all times, as you have all noted over the past few months. So I've taken the decision to stop working on this project and create some clarity for the community.**
+
+**The code will remain available in the Github repository and on OpenUserJS. Maybe someone is willing to continue the project in a fork. If there is a fork with enough trustworthiness, I'm happy to route everyone there. Send me a message in case you want me to link to your fork.**
+
+**This project has been a great journey for me, and I'm very thankful for all the support of the community over the years.**
+
 FIFA 21's companion app for FIFA Ultimate Team, the FUT 21 Web App, is a website that let's you trade and manage your team on the go.
 
 This TamperMonkey script is meant to enhance the FUT 21 Web App experience. You can install the script following the instructions below. Afterwards you will get a settings button on the bottom right of the web app, where you can enable every feature by itself. The script provides a certain degree of customization possibilities.
@@ -24,7 +31,7 @@ If you benefit from this project, you can buy me a beer :beers: :+1:
 - [x] Find minimum BIN value of players
 - [x] Refresh transfer list
 - [x] Increase transfer list size
-- [x] Extra card information (contracts, fitness)
+- [x] Extra card information (contracts)
 - [x] Total coin value for cards on the transfer list
 
 ## Installation
@@ -60,13 +67,15 @@ npm start
 Make sure to enable `Allow access to file URLs` in `chrome://extensions/` for Tampermonkey, and add the following script snippet:
 ```
 // ==UserScript==
-// @name        FUT Enhancer
+// @name        FUT Enhancer dev
 // @version     0.1
 // @description
 // @license     MIT
 // @author      Tim Klingeleers
 // @match       https://www.easports.com/fifa/ultimate-team/web-app/*
 // @match       https://www.easports.com/*/fifa/ultimate-team/web-app/*
+// @match       https://www.ea.com/fifa/ultimate-team/web-app/*
+// @match       https://www.ea.com/*/fifa/ultimate-team/web-app/*
 // @namespace   https://github.com/Mardaneus86
 // @supportURL  https://github.com/Mardaneus86/futwebapp-tampermonkey/issues
 // @grant       GM_notification

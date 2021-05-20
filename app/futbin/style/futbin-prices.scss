@@ -25,20 +25,36 @@
 .MyClubResults .listFUTItem .auction .auctionValue.futbin {
   display: block;
 }
-.listFUTItem .auction .auction-state {
-  width: 25%;
-  float: right;
+
+.listFUTItem .auction>.auction-state, .listFUTItem .auction>.auctionStartPrice, .listFUTItem .auction>.auctionValue {
+  flex: 1 1 20%;
+  overflow: hidden;
 }
 
 .listFUTItem .auction {
-  display: block;
+  top: 30%;
+  max-width: none;
+  width: 50%;
+
+  .futbin .coins.value .time {
+    display: inline;
+    font-size: 1em;
+  }
 }
 
-.listFUTItem .auction .auctionValue {
-  width: 24%;
-  float: left;
-  padding-right: 1%;
+@media (max-width: 1130px) {
+  .listFUTItem .auction {
+    width: auto;
+  }
+  
+  html[dir=ltr] .listFUTItem .auction {
+    left: auto;
+  }
 }
+.ut-navigation-container-view.ui-layout-right .listFUTItem .auction {
+  top: 30%;
+}
+
 .futbinupdate {
   font-size: 14px;
   clear: both;
@@ -55,7 +71,19 @@
   background-color: #7ffe94;
   color: #434853;
 }
+.ut-club-search-results-view {
+  .listFUTItem .auction {
+    width: 10%;
+  }
+  
+  .auction-state, .auctionValue {
+    display: none;
 
+    &.futbin {
+      display: block;
+    }
+  }
+}
 .player-picks-modal .time {
   display: block;
 }
@@ -63,11 +91,25 @@
   min-width: 58px;
   flex: none;
   width: auto;
-  bottom: -2.2em;
+  bottom: -2.6em;
   white-space: nowrap;
 
   .coins.value {
-    text-align: center; 
+    text-align: center;
     margin: 0 8px;
   }
 }
+
+.ut-squad-overview .ut-squad-summary {
+  width: 70%;
+}
+
+.refresh-squad-button {
+  margin: 17px 5px;
+  color:#e2dde2;
+  &:before {
+    font-family: UltimateTeam-Icons,sans-serif;
+    content: '\E051';
+  }
+}
+
